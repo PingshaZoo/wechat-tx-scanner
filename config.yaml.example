@@ -1,0 +1,41 @@
+# WeChat Transaction Image Recognition System - Configuration Template
+# Copy this file to config.yaml and fill in your settings.
+# config.yaml is in .gitignore — never commit your API keys.
+
+wechat:
+  # Manually specify WeChat storage directories to scan
+  # Typical WeChat paths on Windows:
+  #   C:/Users/<user>/Documents/WeChat Files/<wxid>/FileStorage/Image
+  #   C:/Users/<user>/Documents/WeChat Files/<wxid>/FileStorage/File
+  #   C:/Users/<user>/Documents/WeChat Files/<wxid>/FileStorage/MsgAttach
+  scan_paths:
+    - "C:/Users/yourname/Documents/WeChat Files"
+  file_extensions: [".dat", ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp"]
+  min_file_size_kb: 5
+  max_file_size_mb: 20
+
+ai:
+  # DashScope API for Qwen-VL (get key from https://dashscope.console.aliyun.com/)
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key: ""   # Set via DASHSCOPE_API_KEY env var or fill in directly
+  model: "qwen-vl-max"
+  max_tokens: 1024
+  temperature: 0.1
+  timeout_seconds: 60
+  max_retries: 3
+  prompt_file: "./prompt.txt"
+  image_max_side: 1568
+  image_quality: 85
+
+output:
+  excel_path: "./transaction_records.xlsx"
+  sheet_name: "交易记录"
+  columns: ["交易方", "交易时间", "支付方式", "账号", "交易金额", "对应图片"]
+  decoded_images_dir: "./decoded_images"
+
+state:
+  db_path: "./processed.db"
+
+logging:
+  level: "INFO"
+  file: "./app.log"

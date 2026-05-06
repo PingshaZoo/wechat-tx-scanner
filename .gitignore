@@ -1,0 +1,23 @@
+# Sensitive — contains API keys, personal paths
+config.yaml
+deepseek.conf
+
+# Output / generated
+transaction_records.xlsx
+processed.db
+app.log
+decoded_images/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Claude Code
+.claude/
+
+# IDE
+.vscode/
+.idea/

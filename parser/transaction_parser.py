@@ -5,7 +5,7 @@ from typing import Optional
 
 logger = logging.getLogger("tx_scanner.parser")
 
-REQUIRED_FIELDS = ["交易方", "交易时间", "支付方式", "账号", "交易金额"]
+REQUIRED_FIELDS = ["交易对手名称", "交易日期", "摘要", "交易金额"]
 
 
 def parse_ai_response(raw_text: str) -> Optional[dict]:

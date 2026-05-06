@@ -113,10 +113,10 @@ class QwenClient(BaseAIClient):
         )
 
     def check_connectivity(self) -> bool:
-        """Test connectivity with a tiny 1x1 JPEG (no real image needed)."""
+        """Test connectivity with a small JPEG (no real image needed)."""
         try:
-            # Create minimal JPEG for connectivity test
-            img = Image.new("RGB", (1, 1))
+            # qwen-vl-max requires min 10x10, use 32x32
+            img = Image.new("RGB", (32, 32))
             buf = io.BytesIO()
             img.save(buf, format="JPEG")
             b64 = base64.b64encode(buf.getvalue()).decode("ascii")

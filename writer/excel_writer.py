@@ -53,12 +53,14 @@ class ExcelWriter:
 
         for row in rows:
             ws.append([
-                row.get("交易方", "未知"),
-                row.get("交易时间", "未知"),
-                row.get("支付方式", "未知"),
-                row.get("账号", "未知"),
+                row.get("交易日期", "未知"),
+                row.get("交易对手名称", "未知"),
+                row.get("摘要", ""),
+                "",  # 收入/支出 — 暂空
                 row.get("交易金额", 0.0),
-                row.get("对应图片", ""),
+                "",  # 余额 — 暂空
+                row.get("支付截图", ""),
+                "",  # 备注 — 暂空
             ])
 
         self._auto_width(ws)

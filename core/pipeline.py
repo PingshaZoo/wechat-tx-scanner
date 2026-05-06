@@ -58,7 +58,7 @@ def process_file(entry: FileEntry, ai_client: QwenClient, dedup: Deduplicator,
 
     # Mark processed
     if result.is_transaction and result.transaction_data:
-        result.transaction_data["对应图片"] = entry.path
+        result.transaction_data["支付截图"] = entry.path
         dedup.mark_processed(entry, is_transaction=True, transaction_data=result.transaction_data)
         return ProcessResult.TRANSACTION_FOUND, result.transaction_data
     else:
@@ -117,7 +117,7 @@ def run_scan(config: dict, force: bool = False) -> dict:
             transactions.append(tx_data)
             stats["transactions"] += 1
             logger.info("  -> TRANSACTION: %s | %s | %.2f",
-                        tx_data.get("交易方"), tx_data.get("支付方式"), tx_data.get("交易金额"))
+                        tx_data.get("交易对手名称"), tx_data.get("交易日期"), tx_data.get("交易金额"))
         elif result == ProcessResult.NOT_TRANSACTION:
             stats["not_transactions"] += 1
         elif result == ProcessResult.DECODE_FAILED:
